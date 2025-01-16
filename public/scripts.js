@@ -70,7 +70,7 @@ let clientData = {
 	B: [],
 	C: []
 };
-
+/*
 async function sendDataToServer(A, B, C) {
   try {
     const response = await fetch("/api/signal", {
@@ -89,20 +89,20 @@ async function sendDataToServer(A, B, C) {
   } catch (err) {
     console.error("Error sending data to server:", err);
   }
-}
+}*/
 
 // /api/signal -> 단일 데이터(마지막 한 건)만 GET
 // -> 매번 하나씩 누적
 const MAX_POINTS = 100;
 
 async function fetchAndUpdate() {
-  try {
+  try {/*
     const A = 50-Math.random() * 100; 
     const B = 50-Math.random() * 100; 
     const C = 0; // C 고정값
 
     // 서버로 데이터 전송
-    await sendDataToServer(A, B, C);
+    await sendDataToServer(A, B, C); //For Debug*/
 
     // 서버에서 데이터 가져오기
     const res = await fetch("/api/signal");
