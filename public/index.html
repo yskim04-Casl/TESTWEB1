@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>:: LOCAL SERVER ::</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- 전체 컨테이너 -->
+    <div class="main-container">
+        <!-- 왼쪽 패널 -->
+        <div class="left-panel">
+            <!-- 제목 -->
+            <h2 class="panel-title">TEST WEB</h2>
+
+            <!-- 체크박스 폼 -->
+            <form id="checkbox-form">
+                <div class="input-group">
+                    <label class="checkbox">
+                        <input class="checkbox__input" type="checkbox" value="A" onclick="updateGraph('A')">
+                        <span class="checkbox__label">A signal</span>
+                    </label>
+                    <label class="checkbox">
+                        <input class="checkbox__input" type="checkbox" value="B" onclick="updateGraph('B')">
+                        <span class="checkbox__label">B signal</span>
+                    </label>
+                    <label class="checkbox">
+                        <input class="checkbox__input" type="checkbox" value="C" onclick="updateGraph('C')">
+                        <span class="checkbox__label">C signal</span>
+                    
+					</label>
+					<!--
+                    <label class="checkbox">
+                        <input class="checkbox__input" type="checkbox" value="D" onclick="updateGraph('D')">
+                        <span class="checkbox__label">D signal</span>
+                    </label>
+                    <label class="checkbox">
+                        <input class="checkbox__input" type="checkbox" value="E" onclick="updateGraph('E')">
+                        <span class="checkbox__label">E signal</span>
+                    </label>
+                    <label class="checkbox">
+                        <input class="checkbox__input" type="checkbox" value="F" onclick="updateGraph('F')">
+                        <span class="checkbox__label">F signal</span>
+                    </label>
+					-->
+                </div>
+            </form>
+        </div>
+
+        <!-- 오른쪽 패널 -->
+        <div class="right-panel">
+			<h3 class="chart-title">송신받은 신호</h3>
+            <canvas id="myChart"></canvas>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="scripts.js"></script>
+</body>
+</html>

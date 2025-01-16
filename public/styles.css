@@ -1,0 +1,234 @@
+:root {
+    --hue: 223;
+    --sat1: 10%;
+    --sat2: 90%;
+    --dark-gray4: hsl(var(--hue), var(--sat1), 30%);
+    --primary2: hsl(var(--hue), var(--sat2), 60%);
+    --light-gray1: hsl(var(--hue), var(--sat1), 95%);
+    --light-gray2: hsl(var(--hue), var(--sat1), 90%);
+    --light-gray3: hsl(var(--hue), var(--sat1), 85%);
+    --light-gray5: hsl(var(--hue), var(--sat1), 20%);
+    --light-gray7: hsl(var(--hue), var(--sat1), 65%);
+    --dark-gray5: hsl(var(--hue), var(--sat1), 25%);
+    --dark-gray6: hsl(var(--hue), var(--sat1), 20%);
+    --dark-gray7: hsl(var(--hue), var(--sat1), 15%);
+    --dark-gray8: hsl(var(--hue), var(--sat1), 10%);
+    --primary3: hsl(var(--hue), var(--sat2), 50%);
+    --primary4: hsl(var(--hue), var(--sat2), 40%);
+    --trans-dur: 0.25s;
+}
+
+/* 전체 컨테이너 */
+.main-container {
+    display: flex; /* 가로 정렬 */
+    flex-direction: row; /* 패널을 가로로 배치 */
+    height: 100vh; /* 화면 전체 높이 */
+    align-items: stretch; /* 패널 높이를 동일하게 */
+}
+
+/* 왼쪽 패널 */
+.left-panel {
+    flex: 0 0 15%; /* 화면 너비의 20% 차지 */
+    background-color: var(--light-gray3); /* 왼쪽 패널 배경색 */
+    padding: 1em; /* 패널 내부 여백 */
+    display: flex;
+    flex-direction: column; /* 내부 요소를 세로로 배치 */
+    gap: 1em; /* 내부 요소 간 간격 */
+    border-right: 1px solid var(--light-gray5); /* 오른쪽 경계선 */
+}
+
+/* 패널 제목 스타일 */
+.panel-title {
+    display: flex; /* 플렉스 레이아웃 */
+    justify-content: center; /* 가로 중앙 정렬 */
+    align-items: center; /* 세로 중앙 정렬 */
+    font-size: 1.7em; /* 글씨 크기 */
+	font-family: 'San Francisco', Calibri, Arial; 
+    font-weight: bold; /* 굵은 글씨 */
+    color: var(--dark-gray7); /* 텍스트 색상 */
+    height: 3em; /* 높이를 고정하여 위치 정렬 */
+    margin-bottom: 1em; /* 체크박스와의 간격 */
+    background-color: var(--light-gray2); /* 배경색 */
+    border-radius: 0.5em; /* 모서리를 둥글게 */
+}
+
+/* 오른쪽 패널 */
+.right-panel {
+    flex: 1;
+    background-color: var(--light-gray1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 1em;
+}
+
+/* 캔버스 (그래프) */
+canvas {
+    width: 75%; /* 오른쪽 패널의 70% 너비 */
+    height: 75%; /* 오른쪽 패널의 70% 높이 */
+    max-width: 1200px; /* 최대 너비 제한 */
+    max-height: 800px; /* 최대 높이 제한 */
+    border: 1px solid var(--light-gray7); /* 경계선 */
+    border-radius: 0.5em; /* 모서리를 둥글게 */
+    background-color: var(--light-gray2); /* 캔버스 배경색 */
+}
+
+/* 오른쪽 간단한 제목 */
+.chart-title {
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    font-size: 1.2em; 
+    font-family: 'San Francisco', Calibri, Arial; 
+    font-weight: bold;
+    color: var(--dark-gray7);
+    margin-bottom: 1em; 
+    padding: 0.5em;
+    background-color: var(--light-gray2);
+    border-radius: 0.5em;
+}
+
+/* 체크박스 간격 조정 */
+.checkbox {
+    display: flex;
+    align-items: center;
+    gap: 0.75em;
+    padding: 0.75em 1em;
+	font-family: 'San Francisco', Calibri, Arial; 
+	font-size: 1em; /* 글씨 크기 */
+	font-weight: bold; /* 굵은 글씨 */
+    background-color: var(--light-gray3); /* 기본 배경색 */
+    border-radius: 0.5em; /* 모서리 둥글게 */
+    box-shadow: 0 0 0 0.0625em var(--light-gray5) inset;
+    cursor: pointer;
+    margin-bottom: 1em; /* 체크박스들 사이의 간격 */
+    transition: background-color var(--trans-dur), box-shadow var(--trans-dur);
+}
+
+/* 체크박스 마지막 요소 아래 간격 제거 */
+.checkbox:last-child {
+    margin-bottom: 0;
+}
+
+/* 체크박스 호버 효과 */
+.checkbox:hover {
+    background-color: var(--light-gray2); /* 밝은 회색으로 변경 */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* 부드러운 그림자 추가 */
+}
+
+/* 체크박스 입력 필드 */
+.checkbox__input {
+    width: 1.2em; /* 너비 */
+    height: 1.2em; /* 높이 */
+    border-radius: 0.25em; /* 모서리 둥글게 */
+    background-color: var(--light-gray1); /* 기본 배경 */
+    border: 1px solid var(--light-gray6); /* 기본 경계 */
+    cursor: pointer;
+    transition: background-color var(--trans-dur), box-shadow var(--trans-dur);
+}
+
+/* 체크박스 라벨 */
+.checkbox__label {
+    font-size: 1em;
+    color: var(--dark-gray7); /* 기본 텍스트 색상 */
+    flex-grow: 1; /* 텍스트가 남은 공간을 차지 */
+    transition: color var(--trans-dur); /* 부드러운 색상 변경 */
+}
+
+/* 체크박스 선택 상태 */
+.checkbox__input:checked {
+    background-color: var(--primary3); /* 선택 시 밝은 파란색 */
+    box-shadow: 0 0 0 0.125em var(--primary4) inset;
+    border: none; /* 선택 시 경계선 제거 */
+}
+
+/* 체크박스 선택 시 라벨 색상 */
+.checkbox__input:checked + .checkbox__label {
+    color: var(--primary3); /* 라벨도 선택된 색상과 매칭 */
+}
+
+/* 태블릿 이상 화면 */
+@media (min-width: 769px) {
+    .left-panel {
+        flex: 0 0 15%; /* 화면 너비의 15%만 차지 */
+    }
+
+    canvas {
+        max-width: none; /* 너비 제한 제거 */
+        max-height: none; /* 높이 제한 제거 */
+        width: 75%; /* 캔버스 크기 확장 */
+        height: 75%; /* 캔버스 크기 확장 */
+    }
+}
+/* 모바일 화면 */
+@media (max-width: 768px) {
+    .main-container {
+        flex-direction: column; /* 모바일에서는 세로 배치 */
+    }
+
+    .left-panel {
+        flex: 0 0 auto; /* 높이 자동 조정 */
+        width: 100%; /* 너비를 화면 전체로 설정 */
+        border-right: none;
+        border-bottom: 1px solid var(--light-gray5); /* 구분선을 아래로 이동 */
+    }
+
+    .right-panel {
+        flex: 1;
+        padding: 1em;
+    }
+
+    canvas {
+        max-width: 100%; /* 모바일 화면에 맞게 너비 제한 */
+        max-height: 300px; /* 모바일 화면에 적절한 높이 설정 */
+        width: 100%;
+        height: auto;
+    }
+}
+/* 데스크톱 화면 */
+@media (min-width: 1024px) {
+    .left-panel {
+        flex: 0 0 15%; /* 화면 너비의 20%만 차지 */
+    }
+
+    canvas {
+        width: 75%; /* 캔버스가 전체 공간을 활용 */
+        height: 75%;
+        max-width: none;
+        max-height: none;
+    }
+}
+/* 다크 모드 패널 스타일 */
+@media (prefers-color-scheme: dark) {
+    .left-panel {
+        background-color: var(--dark-gray6);
+        border-right: 1px solid var(--dark-gray7);
+    }
+
+    .right-panel {
+        background-color: var(--dark-gray5);
+    }
+
+    .checkbox {
+        background-color: var(--dark-gray5);
+        box-shadow: 0 0 0 0.0625em var(--dark-gray7) inset;
+    }
+
+    .checkbox:hover {
+        background-color: var(--dark-gray4);
+    }
+
+    .checkbox__input {
+        background-color: var(--dark-gray6);
+    }
+
+    .checkbox__input:checked {
+        background-color: var(--primary2);
+    }
+
+    canvas {
+        background-color: var(--dark-gray6);
+        border-color: var(--dark-gray8);
+    }
+}
