@@ -105,7 +105,7 @@ async function fetchAndUpdate() {
     await sendDataToServer(A, B, C); //For Debug*/
 
     // 서버에서 데이터 가져오기
-    const res = await fetch("/api/signal");
+    const res = await fetch("https://testweb1-y5nj.onrender.com/api/signal");
     const newPoint = await res.json(); // 단일 객체를 바로 가져옴
 
     console.log("New data point received from server:", newPoint);
