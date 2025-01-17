@@ -47,5 +47,5 @@ app.get("/api/signal", (req, res) => {
 
 // 서버 실행
 app.listen(PORT, () => {
-	console.log(`Server running at http://localhost:${PORT}`);
+	console.log(`Successfully open the server:${PORT}`);
 });
