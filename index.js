@@ -1,9 +1,3 @@
-
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
-
 const express = require("express");
 const app = express();
 const PORT = process.env.PORT || 3000;
