@@ -93,7 +93,7 @@ async function sendDataToServer(A, B, C) {
 
 // /api/signal -> 단일 데이터(마지막 한 건)만 GET
 // -> 매번 하나씩 누적
-const MAX_POINTS = 50;
+const MAX_POINTS = 100;
 
 async function fetchAndUpdate() {
   try {/*
