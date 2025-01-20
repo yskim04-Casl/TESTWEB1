@@ -10,7 +10,7 @@ let activeSignals = {
 // 페이지 로드 후 차트 초기화 + 2초마다 데이터 갱신
 window.addEventListener("DOMContentLoaded", () => {
 	initChart();
-	setInterval(fetchAndUpdate, 1000);
+	setInterval(fetchAndUpdate, 500);
 });
 
 // 차트 생성
@@ -70,13 +70,40 @@ let clientData = {
 	B: [],
 	C: []
 };
+/*
+async function sendDataToServer(A, B, C) {
+  try {
+    const response = await fetch("/api/signal", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ A, B, C }), // JSON 형식으로 데이터 전송
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to send data to server");
+    }
+
+    console.log("Data sent to server successfully");
+  } catch (err) {
+    console.error("Error sending data to server:", err);
+  }
+}*/
 
 // /api/signal -> 단일 데이터(마지막 한 건)만 GET
 // -> 매번 하나씩 누적
-const MAX_POINTS = 100;
+const MAX_POINTS = 50;
 
 async function fetchAndUpdate() {
-  try {
+  try {/*
+    const A = 50-Math.random() * 100; 
+    const B = 50-Math.random() * 100; 
+    const C = 0; // C 고정값
+
+    // 서버로 데이터 전송
+    await sendDataToServer(A, B, C); //For Debug*/
+
     // 서버에서 데이터 가져오기
     const res = await fetch("https://testweb1-y5nj.onrender.com/api/signal");
     const newPoint = await res.json(); // 단일 객체를 바로 가져옴
