@@ -71,7 +71,7 @@ let clientData = {
 	C: []
 };
 
-const MAX_POINTS = 50;
+const MAX_POINTS = 500;
 
 async function fetchAndUpdate() {
   try {/*
