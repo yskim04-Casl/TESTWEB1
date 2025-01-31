@@ -1,8 +1,9 @@
 const express = require("express");
 const app = express();
+const cors = require("cors")
 const PORT = process.env.PORT || 3000;
 
-
+app.use(cors());
 // POST로 받은 JSON을 파싱
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
