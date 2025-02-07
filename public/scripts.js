@@ -10,7 +10,7 @@ let activeSignals = {
 // 페이지 로드 후 차트 초기화 + 2초마다 데이터 갱신
 window.addEventListener("DOMContentLoaded", () => {
 	initChart();
-	setInterval(fetchAndUpdate, 305);
+	setInterval(fetchAndUpdate, 1005);
 });
 
 // 차트 생성
