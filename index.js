@@ -25,7 +25,7 @@ app.post("/api/signal", (req, res) => {
 	});
 
 // 최대 크기 유지
-	if (signals.length > 500) {
+	if (signals.length > 55) {
 		signals.shift(); // 오래된 데이터 제거
 	}
 	res.status(200).json({ message: "Signal received" });
