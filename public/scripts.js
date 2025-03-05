@@ -7,10 +7,10 @@ let activeSignals = {
 	C: false,
 };
 
-// 페이지 로드 후 차트 초기화 + 2초마다 데이터 갱신
+// 페이지 로드 후 차트 초기화 + 1.5초마다 데이터 갱신
 window.addEventListener("DOMContentLoaded", () => {
 	initChart();
-	setInterval(fetchAndUpdate, 2000);
+	setInterval(fetchAndUpdate, 1500);
 });
 
 // 차트 생성
@@ -71,7 +71,7 @@ let clientData = {
 	C: []
 };
 
-const MAX_POINTS = 50;
+const MAX_POINTS = 150;
 
 async function fetchAndUpdate() {
   try {/*
