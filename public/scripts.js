@@ -33,13 +33,13 @@ function initChart() {
       labels: [],
       datasets: [
         {
-          label: "전압 신호 [uA]",
+          label: "전압 신호 [V]",
           data: [],
           borderColor: "red",
           fill: false,
         },
         {
-          label: "전류 신호 [V]",
+          label: "전류 신호 [uA]",
           data: [],
           borderColor: "green",
           fill: false,
