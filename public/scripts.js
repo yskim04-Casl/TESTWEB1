@@ -67,7 +67,7 @@ function initChart() {
 
 // SSE 초기화 및 데이터 수신
 function initSSE() {
-  const eventSource = new EventSource("https://yourdomain/api/signal/stream"); // 실제 서버 주소로 수정
+  const eventSource = new EventSource("https://testweb1-9gn3.onrender.com/api/signal/stream"); // 실제 서버 주소로 수정
   eventSource.onmessage = (event) => {
     const newSignal = JSON.parse(event.data);
     updateChart(newSignal);
