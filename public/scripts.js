@@ -57,7 +57,7 @@ function initChart() {
       responsive: true,
       scales: {
         x: {
-          title: { display: true, text: "C 데이터" },
+          title: { display: true, text: "Time[s]" },
         },
         y: {
           title: { display: true, text: "Value" },
