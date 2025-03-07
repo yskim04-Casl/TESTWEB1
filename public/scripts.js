@@ -10,7 +10,6 @@ let activeSignals = {
 // 페이지 로드 후 차트 초기화 + 2초마다 데이터 갱신
 window.addEventListener("DOMContentLoaded", () => {
 	initChart();
-	setInterval(fetchAndUpdate, 2000);
 });
 
 // 차트 생성
@@ -22,19 +21,19 @@ function initChart() {
 			labels: [], // 이후 timestamps 변환하여 삽입
 			datasets: [
 			{
-				label: "Signal A",
+				label: "전류 [uA]",
 				data: [],
 				borderColor: "red",
 				fill: false,
 			},
 			{
-				label: "Signal B",
+				label: "전압 [V]",
 				data: [],
 				borderColor: "green",
 				fill: false,
 			},
 			{
-				label: "Signal C",
+				label: "시간 [s]",
 				data: [],
 				borderColor: "blue",
 				fill: false,
@@ -71,23 +70,16 @@ let clientData = {
 	C: []
 };
 
-const MAX_POINTS = 50;
+const MAX_POINTS = 304;
 
 async function fetchAndUpdate() {
-  try {/*
-    const A = 50-Math.random() * 100; 
-    const B = 50-Math.random() * 100; 
-    const C = 0; // C 고정값
-
-    // 서버로 데이터 전송
-    await sendDataToServer(A, B, C); //For Debug*/
-
+  try {
     // 서버에서 데이터 가져오기
-    const res = await fetch("https://testweb1-y5nj.onrender.com/api/signal");
+    const res = await fetch("https://testweb1-9gn3.onrender.com/api/signal");
     const newPoint = await res.json(); // 단일 객체를 바로 가져옴
 
     // 데이터 누적
-    clientData.timestamps.push(newPoint.timestamp);
+    clientData.timestamps.push(newPoint.C);
     clientData.A.push(newPoint.A);
     clientData.B.push(newPoint.B);
     clientData.C.push(newPoint.C);
@@ -100,12 +92,12 @@ async function fetchAndUpdate() {
       clientData.C.shift();
     }
 
-    // 차트 라벨 업데이트
+    // 차트 라벨 업데이트 X축축
     myChart.data.labels = clientData.timestamps.map(ts =>
       new Date(ts).toLocaleTimeString()
     );
 
-    // 차트 데이터 업데이트
+    // 차트 데이터 업데이트, Y축
     myChart.data.datasets[0].data = activeSignals.A
       ? clientData.A
       : clientData.A.map(() => null);
