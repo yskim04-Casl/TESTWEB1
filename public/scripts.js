@@ -22,13 +22,13 @@ function initChart() {
       labels: [], // 시간 데이터
       datasets: [
         {
-          label: "전압 [uA]",
+          label: "전압 [V]",
           data: [],
           borderColor: "red",
           fill: false,
         },
         {
-          label: "전류 [V]",
+          label: "전류 [uA]",
           data: [],
           borderColor: "green",
           fill: false,
@@ -57,7 +57,7 @@ function initChart() {
 
 // SSE 초기화 및 이벤트 핸들러 등록
 function initSSE() {
-  const eventSource = new EventSource("https://yourdomain/api/signal/stream"); // 도메인/포트를 실제 서버에 맞게 수정
+  const eventSource = new EventSource("https://testweb1-9gn3.onrender.com/api/signal/stream"); // 도메인/포트를 실제 서버에 맞게 수정
   eventSource.onmessage = (event) => {
     const newSignal = JSON.parse(event.data);
     updateChart(newSignal);
