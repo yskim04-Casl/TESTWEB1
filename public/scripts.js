@@ -29,22 +29,24 @@ function initChart() {
   myChart = new Chart(ctx, {
     type: "line",
     data: {
-      labels: [], // X축 라벨 (시간)
+      // x축 라벨: 기존 timestamps 대신 C 데이터를 x축 라벨로 사용
+      labels: [],
       datasets: [
         {
-          label: "전압 [uA]",
+          label: "전압 신호 [uA]",
           data: [],
           borderColor: "red",
           fill: false,
         },
         {
-          label: "전류 [V]",
+          label: "전류 신호 [V]",
           data: [],
           borderColor: "green",
           fill: false,
         },
+        // 필요에 따라 '시간 신호' 데이터셋은 제거 가능
         {
-          label: "시간 [s]",
+          label: "시간 신호 [DEBUG]",
           data: [],
           borderColor: "blue",
           fill: false,
@@ -55,7 +57,7 @@ function initChart() {
       responsive: true,
       scales: {
         x: {
-          title: { display: true, text: "Time" },
+          title: { display: true, text: "C 데이터" },
         },
         y: {
           title: { display: true, text: "Value" },
@@ -79,7 +81,7 @@ function initSSE() {
 
 // 신규 신호 수신 시 처리: 데이터를 누적하고 차트 갱신
 function updateChart(newSignal) {
-  // 데이터 누적
+  // 기존에 수신된 데이터 누적
   clientData.timestamps.push(newSignal.timestamp);
   clientData.A.push(newSignal.A);
   clientData.B.push(newSignal.B);
@@ -101,15 +103,15 @@ function updateGraph(signalKey, checkboxElem) {
   refreshChartData();
 }
 
-// 체크박스 활성 상태에 따라 전체 차트 데이터를 갱신
+// 활성 상태에 따라 전체 차트 데이터를 갱신하는 함수
 function refreshChartData() {
-  // X축 라벨 갱신 (시간)
-  myChart.data.labels = clientData.timestamps.map(ts => new Date(ts).toLocaleTimeString());
+  // x축 라벨을 clientData.C 값으로 설정 (C 데이터가 x축에 표시됨)
+  myChart.data.labels = clientData.C;
 
-  // 각 데이터셋을 체크박스 활성 여부에 따라 업데이트:
-  // 활성일 경우 실제 데이터, 비활성일 경우 null로 채워 차트에 표시하지 않음
+  // 각 데이터셋 업데이트: 체크박스가 활성화되어 있을 경우 실제 데이터, 아니면 null로 채워서 플롯 제거
   myChart.data.datasets[0].data = activeSignals.A ? clientData.A : clientData.A.map(() => null);
   myChart.data.datasets[1].data = activeSignals.B ? clientData.B : clientData.B.map(() => null);
+  // 만약 x축에 C 데이터를 사용하는 경우, '시간 신호' 데이터셋은 불필요하다면 제거 가능
   myChart.data.datasets[2].data = activeSignals.C ? clientData.C : clientData.C.map(() => null);
 
   myChart.update();
