@@ -18,15 +18,15 @@
             <form id="checkbox-form">
                 <div class="input-group">
                     <label class="checkbox">
-                        <input class="checkbox__input" type="checkbox" value="A" onclick="updateGraph('A')">
+                        <input class="checkbox__input" type="checkbox" value="A" checked onclick="updateGraph('A', this)">
                         <span class="checkbox__label">전압 신호[V]</span>
                     </label>
                     <label class="checkbox">
-                        <input class="checkbox__input" type="checkbox" value="B" onclick="updateGraph('B')">
+                        <input class="checkbox__input" type="checkbox" value="B" checked onclick="updateGraph('B', this)">
                         <span class="checkbox__label">전류 신호[uA]</span>
                     </label>
                     <label class="checkbox">
-                        <input class="checkbox__input" type="checkbox" value="C" onclick="updateGraph('C')">
+                        <input class="checkbox__input" type="checkbox" value="C" checked onclick="updateGraph('C', this)">
                         <span class="checkbox__label">시간 신호 [DEBUG]</span>
                     
 					</label>
